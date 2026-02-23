@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora | The Lookbook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #f4f1ea;       /* Creamy background */
+            --paper-white: #fffefb;    /* High-end paper color */
+            --velora-green: #2D5A43;   /* Brand color */
+            --text-main: #4a3f35;      /* Earthy text */
+            --spine-shadow: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.08));
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 3D Viewport Setup */
+        .lookbook-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 2500px;
+            padding-top: 50px; /* Stronger perspective for a realistic feel */
+        }
+
+        .book-container {
+            display: flex;
+            width: 900px;
+            height: 600px;
+            position: relative;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+            background: var(--paper-white);
+        }
+
+        /* The Pages */
+        .page {
+            width: 50%;
+            height: 100%;
+            background: var(--paper-white);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+            border: 1px solid #e0ddd5;
+        }
+
+        /* The Gutter (The middle shadow) */
+        .left-fixed::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40px;
+            height: 100%;
+            background: var(--spine-shadow);
+        }
+
+        /* The Flipping Page Mechanics */
+        /* Replace .right-flipping with this */
+        .paper {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            transform-origin: left;
+            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-style: preserve-3d;
+        }
+
+        .paper.flipped {
+            transform: rotateY(-180deg);
+        }  
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--paper-white);
+            border: 1px solid #e0ddd5;
+            box-sizing: border-box;
+            padding: 40px;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            /* Spine shadow for the back side of the page */
+            box-shadow: inset -10px 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* Visual Content Styling */
+        .bouquet-img {
+            max-width: 85%;
+            max-height: 70%;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.12));
+            margin-bottom: 25px;
+        }
+
+        .mood-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        /* Navigation Controls */
+        .controls {
+            position: relative; /* Changed from fixed or absolute to keep it in flow */
+            margin-top: 50px;   /* Push it down away from the book */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            z-index: 100;
+        }
+
+.side-nav {
+    position: fixed; /* Changed from absolute to fixed */
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8); /* White circle like high-end galleries */
+    border: 1px solid #e0ddd5;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 9999; /* Ensure it stays above EVERYTHING */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.side-nav:hover {
+
+    background: rgba(45, 90, 67, 0.1); /* Subtle Velora Green glow */
+
+    border-color: #2D5A43;
+
+    transform: translateY(-50%) scale(1.1);
+
+}
+
+/* Position them on the edges of the screen */
+.prev {
+    left: 30px; 
+}
+
+.next {
+    right: 30px;
+}
+
+.arrow {
+    font-size: 2rem;
+    color: #2D5A43;
+    font-family: serif;
+    line-height: 1;
+    pointer-events: none; /* Prevents the text from interfering with clicks */
+}
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="home-link">← Home</a>
+
+    <div class="lookbook-wrapper">
+        <div class="book-container">
+    <div class="paper" id="p1" style="z-index: 5;">
+        <div class="front">
+            <img src="assets/bouquet1.png" class="bouquet-img">
+            <h2 class="mood-title">I. Midnight Romance</h2>
+        </div>
+        <div class="back">
+            <img src="assets/bouquet2.png" class="bouquet-img">
+            <h2 class="mood-title">II. Morning Dew</h2>
+        </div>
+    </div>
+
+    <div class="paper" id="p2" style="z-index: 4;">
+        <div class="front">
+            <img src="assets/bouquet3.png" class="bouquet-img">
+            <h2 class="mood-title">III. Obsidian Rose</h2>
+        </div>
+        <div class="back">
+            <img src="assets/bouquet4.png" class="bouquet-img">
+            <h2 class="mood-title">IV. Velvet Dream</h2>
+        </div>
+    </div>
+
+    <div class="paper" id="p3" style="z-index: 3;">
+        <div class="front">
+            <img src="assets/bouquet5.png" class="bouquet-img">
+            <h2 class="mood-title">V. Spring Whisper</h2>
+        </div>
+        <div class="back">
+            <img src="assets/bouquet6.png" class="bouquet-img">
+            <h2 class="mood-title">VI. Cloud Nine</h2>
+        </div>
+    </div>
+    <div class="paper" id="p4" style="z-index: 2;">
+        <div class="front">
+            <img src="assets/bouquet7.png" class="bouquet-img">
+            <h2 class="mood-title">VII. Saffron Sunset</h2>
+        </div>
+        <div class="back">
+            <img src="assets/rose.png" class="bouquet-img">
+            <h2 class="mood-title">VIII. Rustic Elegance</h2>
+        </div>
+    </div>
+    <div class="paper" id="p5" style="z-index: 1;">
+        <div class="front">
+            <img src="assets/choco_bar.png" class="bouquet-img">
+            <h2 class="mood-title">IX. Diamond Jubilee</h2>
+        </div>
+        <div class="back">
+            <img src="assets/ferrero.png" class="bouquet-img">
+            <h2 class="mood-title">X. Twilight Indigo</h2>
+        </div>
+    </div>
+    <div class="paper" id="p6" style="z-index: 0;">
+        <div class="front">
+            <h2 class="mood-title">Velora</h2>
+            <p>Ready to bloom?</p>
+            <a href="build.html" style="color:var(--velora-green); font-weight:bold;">Build a Bouquet →</a>
+        </div>
+    </div>
+    </div>
+
+    <div class="controls">
+        <button class="side-nav prev" onclick="flip(false)">
+    <span class="arrow">‹</span>
+</button>
+
+<button class="side-nav next" onclick="flip(true)">
+    <span class="arrow">›</span>
+</button>
+    </div>
+
+    <script>
+    let currentLocation = 1;
+    let numOfPapers = 6; // Update this number if you add more pages!
+    let maxLocation = numOfPapers + 1;
+
+    function flip(isNext) {
+        if (isNext) {
+            if (currentLocation < maxLocation) {
+                const paper = document.getElementById(`p${currentLocation}`);
+                paper.classList.add("flipped");
+                // This ensures the paper we just flipped moves to the bottom of the left stack
+                setTimeout(() => { paper.style.zIndex = currentLocation; }, 500);
+                currentLocation++;
+            }
+        } else {
+            if (currentLocation > 1) {
+                currentLocation--;
+                const paper = document.getElementById(`p${currentLocation}`);
+                paper.classList.remove("flipped");
+                // This brings the paper back to the top of the right stack
+                paper.style.zIndex = (numOfPapers - currentLocation) + 5;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

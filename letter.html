@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write the Card | Velora</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+</head>
+<body class="letter-body">
+    <nav class="letter-nav">
+        <div class="logo">velora</div>
+    </nav>
+
+    <main class="letter-main">
+        <span class="step-label">WRITE THE CARD</span>
+        
+        <div class="card-container">
+    <div class="letter-card">
+        <div class="letter-content">
+            <p>Dear <input type="text" id="recipient-name" placeholder="Receiver"></p>
+            
+            <textarea id="main-letter-input" placeholder="You are the best part of my life and I can't describe how much..."></textarea>
+            
+            <div class="signature-block">
+                <p>Sincerely,</p>
+                <input type="text" id="sender-name" placeholder="Your name">
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="letter-actions">
+            <button onclick="saveAndGoToFinal()" class="btn-primary">NEXT</button>
+        </div>
+    </main>
+
+    <script src="letter.js"></script>
+</body>
+</html>

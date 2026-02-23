@@ -1,0 +1,969 @@
+:root {
+    --bg-color: #F8F5F0;     /* Cream background */
+    --primary-green: #2D5A43; /* Forest green button */
+    --text-main: #333333;
+    --text-accent: #C88D94;   /* The pinkish "digitally" color */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.nav-links a.active {
+    opacity: 1;
+    border-bottom: 1px solid var(--text-main);
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-wrap: wrap; /* Makes it responsive for mobile */
+    align-items: center;
+    padding: 5% 10%;
+    min-height: 70vh;
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 5rem); /* Responsive font size */
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.italic-text {
+    font-style: italic;
+    color: var(--text-accent);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    max-width: 450px;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.cta-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    color: white;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.btn-text {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+/* Image/Vase Area */
+.hero-image img {
+    max-width: 70%; /* Adjust this (e.g., 60% or 50%) to make the vase smaller */
+    height: auto;    /* Keeps the proportions perfect */
+    object-fit: contain;
+}
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    padding: 20px;
+}
+
+/* Hero image breathing start
+/* 1. Define the "Breathing" movement */
+@keyframes breathing {
+    0% {
+        transform: translateY(0px); /* Starting position */
+    }
+    50% {
+        transform: translateY(-15px); /* Move up by 15 pixels */
+    }
+    100% {
+        transform: translateY(0px); /* Return to start */
+    }
+}
+
+/* 2. Apply it to your Hero Image */
+.hero-image img {
+    max-width: 70%; /* Keeping your previous size fix */
+    height: auto;
+    object-fit: contain;
+    
+    /* Animation Properties */
+    animation: breathing 4s ease-in-out infinite;
+}
+/* hero image breathing end
+
+/* How It Works Section */
+.how-it-works {
+    text-align: center;
+    padding: 5rem 10%;
+    background-color: #F1EDE4; /* Slightly darker cream */
+}
+
+.how-it-works h2 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.step-number {
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+}
+
+.step h3 {
+    font-family: var(--font-serif);
+    margin-bottom: 1rem;
+}
+
+.step p {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Tablet & Mobile Adjustments */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-content {
+        margin-bottom: 3rem;
+    }
+    .cta-group {
+        justify-content: center;
+    }
+}
+/* Build Page Specifics */
+.build-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+}
+
+.build-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.build-grid {
+    display: grid !important;
+    grid-template-areas: "menu canvas";
+    grid-template-columns: 450px 1fr !important;
+    gap: 3rem;
+    align-items: start;
+}
+.selection-panel {
+    grid-area: menu;
+}
+
+.canvas-panel {
+    grid-area: canvas;
+}
+
+/* Item Cards */
+.items-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+.item-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.item-card:hover {
+    border-color: var(--primary-green);
+    background: #fdfdfd;
+}
+
+.item-card img {
+    width: 40px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Canvas */
+.drawing-board {
+    aspect-ratio: 1 / 1;
+    border: 2px dashed #D1C9BC;
+    border-radius: 20px;
+    position: relative;
+    background: #FAF9F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.canvas-placeholder {
+    font-family: var(--font-serif);
+    font-style: italic;
+    opacity: 0.4;
+    color: var(--text-main);
+}
+
+/* Inputs & Buttons */
+.input-field {
+    width: 100%;
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid #E5E0D5;
+    background: #F1EDE4;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.finish-btn {
+    width: 100%;
+    background: #2D5A43; /* Muted green from image */
+    color: white;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Responsive */
+
+    .canvas-panel { order: -1; } /* Canvas on top for mobile */
+/* This controls the small icons in the selection grid */
+.item-card img {
+    width: 50px;       /* Adjust based on your art style */
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* This controls the flowers once they are inside the bouquet */
+.placed-item {
+    width: 100px;      /* Adjust this to make the bouquet look full */
+    height: auto;
+    pointer-events: none; /* Allows you to click 'through' them if needed */
+    user-select: none;
+}
+.drawing-board, #gift-canvas {
+    aspect-ratio: 1 / 1;
+    border: 2px dashed #D1C9BC;
+    border-radius: 20px;
+    position: relative;
+    background: #FAF9F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%; /* Ensures it fills its half of the grid */
+}
+
+.canvas-panel {
+    position: sticky; /* Keeps the bouquet visible as you scroll the menu */
+    top: 20px;
+}
+
+.bouquet-base {
+    position: absolute;
+    bottom: 0;
+    width: 80%; /* Adjust based on your image */
+    z-index: 1; /* Sits behind the flowers */
+    pointer-events: none; /* So it doesn't block clicking flowers */
+}
+
+.placed-item {
+    width: 110;
+    height: auto;
+    position: absolute;
+    z-index: 999; /* Sits on top of the vase */
+    cursor: url('assets/remove.png'), grab; /* Optional: show a 'remove' cursor */
+    transition: transform 0.2s ease;
+    pointer-events: auto !important; 
+    touch-action: none;
+}
+
+.placed-item:hover {
+    transform: scale(1.1) !important; /* Slight pop when hovering to remove */
+    filter: brightness(1.1);
+}
+
+.counter {
+    margin-top: 15px;
+    font-weight: 500;
+    color: var(--primary-green);
+}
+.bouquet-base {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    left: 5%;
+    z-index: 1; /* Lowest level */
+    pointer-events: none; /* IMPORTANT: This lets clicks pass through to flowers */
+}
+
+.placed-item {
+    position: absolute;
+    width: 100px; /* Adjust based on your image size */
+    z-index: 10;   /* High level so they are always on top */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Ensure the canvas itself doesn't block items */
+#gift-canvas {
+    position: relative;
+    overflow: hidden; /* Allows flower petals to slightly peek out */
+}
+/* When this class is active, everything inside the canvas turns B&W */
+.monochrome-mode img {
+    filter: grayscale(100%);
+    transition: filter 0.5s ease; /* Makes the transition smooth */
+}
+
+/* Optional: Make the vase slightly less intense in B&W mode */
+.monochrome-mode .bouquet-base {
+    opacity: 0.8;
+}
+/* Container for the Toggle */
+.option-card {
+    display: flex;             /* Aligns items in a row */
+    justify-content: space-between; /* Pushes text to left, button to right */
+    align-items: center;       /* Centers them vertically */
+    background-color: #F8F5F0; /* Matching your background */
+    padding: 1rem 1.5rem;      /* Reduced padding */
+    border-radius: 15px;       /* Softer corners */
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0,0,0,0.05); /* Very subtle border */
+}
+
+.option-info {
+    flex: 1; /* Takes up remaining space */
+}
+
+.option-info strong {
+    font-size: 0.95rem;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.option-info span {
+    font-size: 0.8rem;
+    color: #888;
+    display: block; /* Keeps the description on a new line below "Aesthetic" */
+}
+
+/* The Smaller Button */
+.toggle-btn {
+    background-color: #C88D94; /* Your rose color */
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;    /* Much smaller padding */
+    border-radius: 50px;
+    font-size: 0.8rem;         /* Smaller text */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;       /* Prevents text from wrapping */
+}
+
+.toggle-btn:hover {
+    filter: brightness(0.95);
+}
+.hover-card {
+    position: fixed;
+    background: #FFFCEB; /* Creamy yellow from your reference */
+    border: 1px solid #333;
+    padding: 10px 15px;
+    border-radius: 8px;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.hover-card h4 { text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+.hover-card p { font-size: 0.8rem; margin: 0; }
+/* Per-item counter (The tally badges) */
+.tally-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.tally-badge {
+    background: transparent;
+    border: 1px solid #333;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-family: monospace; /* For that retro look in your image */
+    text-transform: uppercase;
+}
+
+/* The Hover Card (Sunflower info) */
+.hover-card {
+    position: fixed;
+    display: none; /* Hidden by default */
+    background: #FFFCEB;
+    border: 1px solid #333;
+    padding: 12px;
+    border-radius: 8px;
+    z-index: 10000;
+    pointer-events: none;
+    text-align: center;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+}
+
+.hover-card h4 { font-family: var(--font-sans); font-weight: bold; margin-bottom: 4px; }
+.hover-card p { font-size: 0.8rem; margin: 0; line-height: 1.4; }
+.canvas-footer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.count-text {
+    font-weight: 600;
+    color: var(--primary-green);
+    white-space: nowrap;
+}
+
+/* Small adjustment to the badges to make them look cleaner beside the text */
+.tally-badge {
+    margin: 0 !important;
+    padding: 2px 10px;
+    font-size: 0.65rem;
+}
+#gift-canvas {
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.03); /* Subtle depth */
+    background-image: radial-gradient(circle at 50% 30%, #fff 0%, #FAF9F6 100%);
+}
+.canvas-view {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-base {
+    position: absolute;
+    bottom: 10%;
+    width: 80%;
+    z-index: 1;
+}
+
+/* Ensure gift items stay inside the box */
+.gift-item {
+    position: absolute;
+    width: 80px;
+    z-index: 20;
+    cursor: grab;
+}
+.handwritten-tag {
+    position: absolute;
+    bottom: 25%;
+    right: 20%;
+    background: #fdfaf0;
+    padding: 10px;
+    border: 1px solid #d4af37;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transform: rotate(5deg);
+    font-family: 'Playfair Display', serif; /* Use a script font if you have one */
+    max-width: 120px;
+    z-index: 10;
+}
+/* FOOTER STYLES */
+.site-footer {
+    padding: 40px 10%; /* Matches your page margins */
+    background-color: #ffffff; /* Or your page background color */
+    margin-top: 60px;
+}
+
+.footer-divider {
+    border: none;
+    border-top: 1px solid #eeeeee; /* Very light line like in the image */
+    margin-bottom: 30px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Puts Velora on left, Credits on right */
+    align-items: center;
+}
+
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.footer-credits {
+    font-size: 0.7rem;
+    color: #888;
+    font-family: 'Inter', sans-serif;
+}
+.modal {
+    position: fixed; z-index: 2000; left: 0; top: 0;
+    width: 100%; height: 100%; background: rgba(0,0,0,0.5);
+    display: flex; justify-content: center; align-items: center;
+}
+.modal-content {
+    background: white; padding: 20px; border-radius: 15px; text-align: center;
+}
+#card-canvas {
+    border: 2px dashed #ADB9AE; /* Velora Greenish Gray */
+    background: #fff; cursor: crosshair; touch-action: none;
+}
+.drawing-tools { margin-top: 15px; display: flex; gap: 10px; justify-content: center; }
+.drawing-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 15px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#card-color-picker {
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: none;
+}
+/* This controls the size of the drawing after it's added to the box */
+.custom-card {
+    width: 85px;
+    height: auto;
+    background-color: white !important;
+    border: 3px solid #282828 !important; 
+    padding: 10px;
+    border-radius: 5px; /* Slightly sharper for a paper look */
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.15); /* Softer shadow */
+    z-index: 100;
+}
+.eraser-active {
+    background-color: #f0f0f0 !important;
+    border: 1px solid #333 !important;
+    border-radius: 5px;
+    color: #333 !important; /* Velora accent color */
+}
+#box-view, #box-video, .gift-item {
+    touch-action: none !important;
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure the gift images are always on top of the video */
+.gift-item {
+    z-index: 10;
+    position: absolute;
+}
+.bouquet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.bouquet-option-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    text-align: center;
+}
+
+.bouquet-option-card:hover {
+    transform: translateY(-3px);
+    border-color: #2D5A43;
+}
+
+.bouquet-option-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+}
+.paper {
+    background: #fffef0; /* Off-white/cream paper color */
+    border: 1px solid #ddd;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 40px;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#main-letter-input {
+    width: 100%;
+    height: 300px;
+    border: none;
+    background: transparent;
+    font-family: 'Dancing Script', cursive; /* A nice handwriting font */
+    font-size: 20px;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+    color: #333;
+}
+
+/* Optional: Add horizontal lines to the paper */
+.lines {
+    position: absolute;
+    top: 40px; left: 0; right: 0; bottom: 40px;
+    background-image: linear-gradient(#e1e1e1 1px, transparent 1px);
+    background-size: 100% 30px; /* Adjust based on line-height */
+    pointer-events: none;
+}
+.letter-body {
+    background-color: #f9f7f2; /* Cream background */
+    font-family: 'Courier Prime', monospace;
+    text-align: center;
+}
+
+.step-label {
+    letter-spacing: 3px;
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-top: 50px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.letter-card {
+background: white;
+    width: 450px; /* Slightly wider for better cursive flow */
+    min-height: 350px;
+    padding: 40px;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.letter-content, 
+.letter-content textarea, 
+.letter-content input {
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    color: #333;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.letter-content textarea {
+    width: 100%;
+    height: 120px;
+    border: none;
+    resize: none;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+}
+
+.letter-content input {
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+}
+
+
+/* The Signature Block inside the card */
+.signature-block {
+    margin-top: auto; /* Pushes signature to the bottom of the card */
+    text-align: right;
+    padding-top: 20px;
+}
+
+.signature-block input {
+    text-align: right;
+    width: 150px;
+    border-bottom: 1px solid #ddd; /* Subtle line for the name */
+}
+.final-body {
+    background-color: #f9f7f2;
+    padding-bottom: 100px;
+}
+
+.reveal-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+/* 1. THE MAIN CONTAINERS */
+/* 1. Reset the containers to stack vertically */
+.final-canvas {
+    position: relative; /* This stays relative so flowers inside can be absolute */
+    width: 600px; 
+    height: 600px;
+    margin: 40px auto; /* Adds space between bouquet and box */
+    background-color: white;
+    overflow: hidden;
+    display: block; /* Ensures they don't overlap */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* 2. Fix the Background Images */
+.bouquet-base {
+    width: 600px;
+    height: 600px;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* 3. This was the overlapping culprit - change to this: */
+#final-box-view {
+    z-index: 2;
+    background-image: url('assets/gift box velora-Cover.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 4. The Flower/Gift placement fix */
+.final-canvas .placed-item, 
+.final-canvas .gift-item {
+    position: absolute !important; 
+    z-index: 10; /* Keeps them on top of the wrapper */
+    pointer-events: none;
+}
+/* Fix for custom drawings in the final gift box */
+.gift-item[src^="data:image"] {
+    background-color: white !important;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.reveal-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Reduced gap to bring text closer to bouquet */
+    background: transparent; /* Ensure the container isn't adding a white block */
+}
+.reveal-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px;
+    color: #333;
+    margin: 40px 0 10px 0; /* Adjust top margin for breathing room */
+    text-align: center;
+    width: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.final-tag {
+    position: absolute;
+    background: #fff;
+    padding: 4px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 14px;
+    color: #555;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    z-index: 15; /* Higher than flowers */
+    transform: rotate(-5deg); /* Gives it that 'hand-tied' look */
+    pointer-events: none;
+}
+.btn-secondary {
+    background-color: #fff;
+    color: #2D5A43; /* Velora Green */
+    border: 2px solid #2D5A43;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #f0f5f2;
+
+
+}
+/* Lookbook
+:root {
+    --bg-color: #f4f1ea;
+    --paper-color: #fffefb;
+    --text-color: #4a3f35;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.book-viewport {
+    width: 900px;
+    height: 600px;
+    position: relative;
+    transition: transform 0.5s;
+}
+
+.book {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 1500px;
+}
+
+.paper {
+    position: absolute;
+    width: 50%; /* Half-width for the spread 
+    height: 100%;
+    top: 0;
+    right: 0; /* Align to the right side initially 
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transform-style: preserve-3d;
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    background-color: var(--paper-color);
+    box-shadow: inset 3px 0px 20px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+/* Page flip state 
+.flipped {
+    transform: rotateY(-180deg);
+}
+
+.content {
+    text-align: center;
+}
+
+.content img {
+    max-width: 100%;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.controls {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Dancing Script', cursive;
+} */

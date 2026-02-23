@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Gift for You | Velora</title>
+    <link rel="icon" type="image/png" href="assets/favicon3.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+</head>
+<body class="final-body">
+
+    <div class="reveal-container">
+        <h1 class="reveal-title">Surprise ! Look what I made for you!</h1>
+
+        <div id="final-bouquet-view" class="final-canvas">
+            <img id="final-base-img" src="" class="bouquet-base">
+        </div>
+
+        <div id="final-box-view" class="final-canvas"></div>
+
+        <div class="final-card-display">
+            <div class="letter-card">
+                <div class="letter-content">
+                    <p id="display-to"></p>
+                    <p id="display-message" class="cursive-text"></p>
+                    <div class="signature-block">
+                        <p>Sincerely,</p>
+                        <p id="display-from"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="final-actions">
+            <button onclick="window.location.href='index.html'" class="btn-primary">MAKE YOUR OWN</button>
+            <button onclick="generateShareLink()" class="btn-secondary" id="share-btn">SHARE THIS GIFT</button>
+        </div>
+    </div>
+
+    <script src="final.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Gift | Velora</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="build-page">
+
+    <nav class="navbar">
+        <div class="logo">velora</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#" class="active">Build</a>
+            <a href="#">Lookbook</a>
+        </div>
+    </nav>
+
+    <main class="build-main">
+        <header class="build-header">
+            <h1>Build your gift</h1>
+            <p>Select items to arrange your perfect surprise. Tap to remove items.</p>
+        </header>
+
+        <div class="build-grid">
+            <section class="selection-panel">
+                <div class="category-nav">
+                    <button class="cat-btn active" onclick="filterItems('flowers')">Flowers</button>
+                    <button class="cat-btn" onclick="filterItems('gifts')">Gifts</button>
+                </div>
+
+                <div class="items-container" id="items-grid"></div>
+
+                <div class="custom-options">
+                    <div class="option-card" id="tag-option-container">
+                        <div class="option-info">
+                            <strong>Personal Touch</strong>
+                            <span>Show your message on a gift tag</span>
+                        </div>
+                        <button class="toggle-btn" id="tag-toggle">Show Tag</button>
+                    </div>
+
+                    <div class="option-card" id="draw-option-container" style="display: none;">
+                        <div class="option-info">
+                            <strong>Hand Drawn Card</strong>
+                            <span>Draw your own custom note</span>
+                        </div>
+                        <button class="toggle-btn" onclick="openDrawingModal()" style="background: #D4AF37; color: white;">🎨 Draw</button>
+                    </div>
+
+                    <input type="text" placeholder="Add a message" class="input-field" id="message-input">
+                    <input type="text" placeholder="Your name" class="input-field" id="name-input">
+                </div>
+
+                <div class="option-card" id="style-option-container">
+    <div class="option-info">
+        <strong>Bouquet Style</strong>
+        <span>Select your favorite wrapping</span>
+    </div>
+    <button class="toggle-btn" onclick="openBouquetModal()" style="background: #2D5A43; color: white;">Browse Styles</button>
+</div>
+
+<div id="bouquet-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3>Choose your wrapping style</h3>
+        <div class="bouquet-grid" id="bouquet-options">
+            </div>
+        <button onclick="closeBouquetModal()" class="btn-text">Cancel</button>
+    </div>
+</div>
+
+                <button class="finish-btn" id="finish-btn" onclick="finishAndSnapshot()" disabled>
+                    Add more items
+                </button>
+            </section>
+
+            <section class="canvas-panel">
+                <div class="drawing-board" id="gift-canvas">
+                    <div class="canvas-placeholder" id="placeholder-text">Click flowers to start your bouquet</div>
+
+                    <div id="bouquet-view" class="canvas-view">
+                        <img src="assets/bouquet2.png" id="base-img" class="bouquet-base">
+                        <div id="gift-tag" class="handwritten-tag" style="display: none;">
+                            <p id="tag-to"></p>
+                            <p id="tag-msg"></p>
+                        </div>
+                    </div>
+
+                    <div id="box-view" class="canvas-view" style="display: none;">
+                        <video id="box-video" class="box-base" muted playsinline>
+                            <source src="assets/box_open.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="canvas-footer">
+                    <div class="count-text">
+                        <span id="current-count">0</span> / 10 flowers
+                    </div>
+                    <div id="item-tally" class="tally-container"></div>
+                </div>
+            </section>
+        </div> 
+    </main>
+
+    <div id="hover-popup" class="hover-card" style="display: none; position: fixed; z-index: 1000;">
+        <h4 id="popup-name"></h4>
+        <p id="popup-speciality"></p>
+        <p id="popup-month"></p>
+    </div>
+
+    <div id="drawing-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3>Draw your custom card</h3>
+            <canvas id="card-canvas" width="300" height="400"></canvas>
+            <div class="drawing-controls">
+    <div class="control-group">
+        <label>Color:</label>
+        <input type="color" id="card-color-picker" value="#2D5A43">
+    </div>
+    <div class="control-group">
+        <label>Brush Size:</label>
+        <input type="range" id="brush-size" min="1" max="10" value="3">
+    </div>
+</div>
+            <div class="drawing-tools">
+                <button onclick="clearCanvas()" class="btn-text">Clear All</button>
+                <button id="eraser-btn" onclick="toggleEraser()" class="btn-text">Eraser</button>
+                <button onclick="saveCanvasCard()" class="btn-primary">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
