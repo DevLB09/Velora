@@ -1,9 +1,7 @@
 // Add this at the VERY top of your file
-const { createClient } = supabase;
-const _supabase = createClient(
-    'https://vgvvspnoiwcbmwbuxqyc.supabase.co', 
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZndnZzcG5vaXdjYm13YnV4cXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxODUwMTYsImV4cCI6MjA4Nzc2MTAxNn0.mEeFTe612x7UK9UL_KandwlQ1DG2sClXGBzkUUR5HEY'
-);
+const supabaseUrl = 'https://vgvvspnoiwcbmwbuxqyc.supabase.co'; // Your Project URL
+const supabaseKey = 'eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZndnZzcG5vaXdjYm13YnV4cXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxODUwMTYsImV4cCI6MjA4Nzc2MTAxNn0...';      // Your Anon Public Key
+const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 window.onload = function() {
     // 1. PRIORITIZE URL DATA (The fix for other devices)
     const urlParams = new URLSearchParams(window.location.search);
