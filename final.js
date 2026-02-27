@@ -1,3 +1,9 @@
+// Add this at the VERY top of your file
+const { createClient } = supabase;
+const _supabase = createClient(
+    'https://vgvvspnoiwcbmwbuxqyc.supabase.co', 
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZndnZzcG5vaXdjYm13YnV4cXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxODUwMTYsImV4cCI6MjA4Nzc2MTAxNn0.mEeFTe612x7UK9UL_KandwlQ1DG2sClXGBzkUUR5HEY'
+);
 window.onload = function() {
     // 1. PRIORITIZE URL DATA (The fix for other devices)
     const urlParams = new URLSearchParams(window.location.search);
@@ -83,18 +89,39 @@ window.onload = function() {
         document.getElementById('display-message').innerText = data.letter.message || '';
         document.getElementById('display-from').innerText = data.letter.from || '';
     }
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ff69b4', '#ff85a2', '#ffb3c1', '#ffffff'] // Velora-themed pinks and whites
+    });
 };
 
 // --- SHARE LOGIC ---
-function generateShareLink() {
+async function generateShareLink() {
     const rawData = localStorage.getItem('velora_gift_data');
-    if (!rawData) return alert("No gift data found to share!");
+    if (!rawData) return alert("No gift data found!");
 
-    const encodedData = btoa(unescape(encodeURIComponent(rawData)));
-    const shareUrl = `${window.location.origin}${window.location.pathname}?gift=${encodedData}`;
+    const shareBtn = document.getElementById('share-btn');
+    shareBtn.innerText = "UPLOADING...";
 
+    // 1. Send data to Supabase
+    const { data, error } = await _supabase
+        .from('bouquets')
+        .insert([{ bouquet_data: JSON.parse(rawData) }])
+        .select();
+
+    if (error) {
+        console.error(error);
+        return alert("Error saving bouquet!");
+    }
+
+    // 2. Create the beautiful short link using the ID from the database
+    const bouquetId = data[0].id;
+    const shareUrl = `${window.location.origin}${window.location.pathname}?id=${bouquetId}`;
+
+    // 3. Copy to clipboard
     navigator.clipboard.writeText(shareUrl).then(() => {
-        const shareBtn = document.getElementById('share-btn');
         shareBtn.innerText = "LINK COPIED!";
         setTimeout(() => { shareBtn.innerText = "SHARE THIS GIFT"; }, 2000);
     });
