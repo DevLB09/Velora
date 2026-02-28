@@ -1,7 +1,3 @@
-// Add this at the VERY top of your file
-const supabaseUrl = 'https://vgvvspnoiwcbmwbuxqyc.supabase.co'; // Your Project URL
-const supabaseKey = 'eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZndnZzcG5vaXdjYm13YnV4cXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxODUwMTYsImV4cCI6MjA4Nzc2MTAxNn0...';      // Your Anon Public Key
-const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 window.onload = function() {
     // 1. PRIORITIZE URL DATA (The fix for other devices)
     const urlParams = new URLSearchParams(window.location.search);
@@ -96,31 +92,26 @@ window.onload = function() {
 };
 
 // --- SHARE LOGIC ---
-async function generateShareLink() {
+function generateShareLink() {
     const rawData = localStorage.getItem('velora_gift_data');
-    if (!rawData) return alert("No gift data found!");
+    if (!rawData) return alert("No gift data found to share!");
 
-    const shareBtn = document.getElementById('share-btn');
-    shareBtn.innerText = "UPLOADING...";
+    // This converts the data into a "Base64" string for the URL
+    const encodedData = btoa(unescape(encodeURIComponent(rawData)));
+    const shareUrl = `${window.location.origin}${window.location.pathname}?gift=${encodedData}`;
 
-    // 1. Send data to Supabase
-    const { data, error } = await _supabase
-        .from('bouquets')
-        .insert([{ bouquet_data: JSON.parse(rawData) }])
-        .select();
-
-    if (error) {
-        console.error(error);
-        return alert("Error saving bouquet!");
-    }
-
-    // 2. Create the beautiful short link using the ID from the database
-    const bouquetId = data[0].id;
-    const shareUrl = `${window.location.origin}${window.location.pathname}?id=${bouquetId}`;
-
-    // 3. Copy to clipboard
+    // Force copy to clipboard (No mobile popup)
     navigator.clipboard.writeText(shareUrl).then(() => {
-        shareBtn.innerText = "LINK COPIED!";
-        setTimeout(() => { shareBtn.innerText = "SHARE THIS GIFT"; }, 2000);
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) {
+            shareBtn.innerText = "LINK COPIED!";
+            // Change it back after 2 seconds
+            setTimeout(() => { 
+                shareBtn.innerText = "SHARE THIS GIFT"; 
+            }, 2000);
+        }
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+        alert("Couldn't copy automatically. Please copy the URL from your browser bar.");
     });
 }
