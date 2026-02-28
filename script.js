@@ -1,3 +1,24 @@
+const veloraMap = {
+    // Flowers
+    "r": "assets/rose.png",
+    "s": "assets/sunflower.png",
+    "t": "assets/tulip.png",
+    "d": "assets/daisy.png",
+    "l": "assets/lilac.png",
+    // Gifts
+    "g1": "assets/choco_bar.png",
+    "g2": "assets/teddy.png",
+    "g3": "assets/hello_kitty.png",
+    "g4": "assets/ferrero.png",
+    // Bouquet Bases
+    "b1": "assets/bouquet1.png",
+    "b2": "assets/bouquet2.png",
+    "b3": "assets/bouquet3.png",
+    "b4": "assets/bouquet4.png",
+    "b5": "assets/bouquet5.png",
+    "b6": "assets/bouquet6.png",
+    "b7": "assets/bouquet7.png"
+};
 // 1. NAVIGATION
 function goToBuild() {
     window.location.href = "build.html";
@@ -514,20 +535,32 @@ function selectBouquet(imageName) {
 }
 function finishAndSnapshot() {
     const giftTag = document.getElementById('gift-tag');
+    // Helper to turn long path into short letter
+    const getShort = (fullPath) => {
+        const fileName = fullPath.split('/').pop(); // gets "rose.png"
+        const assetPath = "assets/" + fileName;
+        return Object.keys(veloraMap).find(key => veloraMap[key] === assetPath) || fullPath;
+    };
     
     // Create the full data object
     const veloraData = {
-        bouquetStyle: document.getElementById('base-img').src,
+        bouquetStyle: getShort(document.getElementById('base-img').src),
         placedFlowers: Array.from(document.querySelectorAll('.placed-item')).map(img => ({
-            src: img.src,
+            src: getShort(img.src), // Shrinks flower path
             left: img.style.left,
             top: img.style.top
         })),
-        placedGifts: Array.from(document.querySelectorAll('.gift-item')).map(img => ({
-            src: img.src,
+        placedGifts: Array.from(document.querySelectorAll('.gift-item')).map(img => {
+            // If the image starts with "data:image", it's a drawing from the canvas.
+            // We leave those alone because they aren't in the assets folder!
+            const isDrawing = img.src.startsWith('data:image');
+    
+            return {
+            src: isDrawing ? img.src : getShort(img.src), 
             left: img.style.left,
             top: img.style.top
-        })),
+            };
+        }),
         // This is the part from your screenshot, now placed correctly inside the object
         tag: {
             show: giftTag.style.display === 'block',
