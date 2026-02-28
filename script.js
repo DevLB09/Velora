@@ -28,14 +28,19 @@ function goToBuild() {
 const giftItems = [
     { name: 'Tulip', category: 'flowers', image: 'tulip.png', speciality: 'Velora Favorite' },
     { name: 'Rose', category: 'flowers', image: 'rose.png', speciality: 'Classic Romance' },
-    { name: 'Daisy', category: 'flowers', image: 'daisy.png', month: 'April' },
+    { name: 'Daisy', category: 'flowers', image: 'daisy.png', speciality: 'Innocence' },
     { name: 'Orchid', category: 'flowers', image: 'orchid.png', speciality: 'Exotic Beauty' },
     { name: 'Lilac', category: 'flowers', image: 'lilac.png', speciality: 'Spring Scent' },
-    { name: 'Sunflower', category: 'flowers', image: 'sunflower.png', month: 'August' },
+    { name: 'Sunflower', category: 'flowers', image: 'sunflower.png', speciality: 'Loyalty' },
     { name: 'Teddy', category: 'gifts', image: 'teddy.png', speciality: 'Cuddly Friend' },
     { name: 'Chocolate', category: 'gifts', image: 'choco_bar.png', speciality: 'Sweet Treat' },
     { name: 'Hello Kitty', category: 'gifts', image: 'hello_kitty.png',speciality: 'Cute Friend' },
-    { name: 'Ferrero', category: 'gifts', image: 'ferrero.png',speciality: 'Yummy Treat' }
+    { name: 'Ferrero', category: 'gifts', image: 'ferrero.png',speciality: 'Yummy Treat' },
+    { name: 'Bueno', category: 'gifts', image: 'bueno.png',speciality: 'Yummy Treat' },
+    { name: 'Labubu', category: 'gifts', image: 'labubu.png',speciality: 'Sweet Friend' },
+    { name: 'Hot Wheels', category: 'gifts', image: 'hot_wheels.png',speciality: 'For the boys' },
+    { name: 'Necklace', category: 'gifts', image: 'necklace.png',speciality: 'Elegance' },
+    { name: 'Bracelet', category: 'gifts', image: 'bracelet.png',speciality: 'Magnificance' }
 ];
 
 let flowerCount = 0;
