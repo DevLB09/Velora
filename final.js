@@ -44,7 +44,7 @@ window.onload = async function () {
         // Load from Supabase using the UUID in the URL
         try {
             const res = await fetch(
-                `${SUPABASE_URL}/rest/v1/bouquets?id=eq.${bouquetId}&select=data`,
+                `${SUPABASE_URL}/rest/v1/bouquet?id=eq.${bouquetId}&select=data`,
                 { headers: SUPABASE_HEADERS }
             );
             const rows = await res.json();
@@ -79,7 +79,7 @@ async function generateShareLink() {
     try {
         // POST bouquet data to Supabase, get back the UUID
         const res = await fetch(
-            `${SUPABASE_URL}/rest/v1/bouquets`,
+            `${SUPABASE_URL}/rest/v1/bouquet`,
             {
                 method: "POST",
                 headers: { ...SUPABASE_HEADERS, "Prefer": "return=representation" },
