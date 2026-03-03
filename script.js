@@ -36,7 +36,7 @@ const giftItems = [
     { name: 'Chocolate', category: 'gifts', image: 'choco_bar.png', speciality: 'Sweet Treat' },
     { name: 'Hello Kitty', category: 'gifts', image: 'hello_kitty.png',speciality: 'Cute Friend' },
     { name: 'Ferrero', category: 'gifts', image: 'ferrero.png',speciality: 'Yummy Treat' },
-    { name: 'Bueno', category: 'gifts', image: 'bueno.png',speciality: 'Yummy Treat' },
+    { name: 'Bueno', category: 'gifts', image: 'kinder.png',speciality: 'Yummy Treat' },
     { name: 'Labubu', category: 'gifts', image: 'labubu.png',speciality: 'Sweet Friend' },
     { name: 'Hot Wheels', category: 'gifts', image: 'hot_wheels.png',speciality: 'For the boys' },
     { name: 'Necklace', category: 'gifts', image: 'necklace.png',speciality: 'Elegance' },

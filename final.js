@@ -1,16 +1,28 @@
+// ==============================
+//  SUPABASE CONFIG
+// ==============================
+const SUPABASE_URL = "https://gksfqakvvyuxrnohwggd.supabase.co";   // 🔁 replace this
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdrc2ZxYWt2dnl1eHJub2h3Z2dkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1NTUxNTYsImV4cCI6MjA4ODEzMTE1Nn0.JipxoMOAilhRjjCxKkq5ujQcoZUG3otDaDkvApGGUAI";            // 🔁 replace this
+
+const SUPABASE_HEADERS = {
+    "Content-Type": "application/json",
+    "apikey": SUPABASE_ANON_KEY,
+    "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+};
+
+// ==============================
+//  VELORA MAP (unchanged)
+// ==============================
 const veloraMap = {
-    // Flowers
     "r": "assets/rose.png",
     "s": "assets/sunflower.png",
     "t": "assets/tulip.png",
     "d": "assets/daisy.png",
     "l": "assets/lilac.png",
-    // Gifts
     "g1": "assets/chocolate.png",
     "g2": "assets/teddy.png",
     "g3": "assets/hello_kitty.png",
     "g4": "assets/ferrero.png",
-    // Bouquet Bases
     "b1": "assets/bouquet1.png",
     "b2": "assets/bouquet2.png",
     "b3": "assets/bouquet3.png",
@@ -20,56 +32,102 @@ const veloraMap = {
     "b7": "assets/bouquet7.png"
 };
 
-window.onload = function() {
+// ==============================
+//  ON LOAD
+// ==============================
+window.onload = async function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const giftParam = urlParams.get('gift');
+    const bouquetId = urlParams.get('id');
     let data;
 
-    if (giftParam) {
+    if (bouquetId) {
+        // Load from Supabase using the UUID in the URL
         try {
-            const decodedData = decodeURIComponent(escape(atob(giftParam)));
-            data = JSON.parse(decodedData);
-            console.log("Velora: Loading shared gift from link.");
+            const res = await fetch(
+                `${SUPABASE_URL}/rest/v1/bouquets?id=eq.${bouquetId}&select=data`,
+                { headers: SUPABASE_HEADERS }
+            );
+            const rows = await res.json();
+            if (!rows.length) throw new Error("Not found");
+            data = rows[0].data;
+            console.log("Velora: Loaded shared bouquet from Supabase.");
         } catch (e) {
-            console.error("Velora Error: Invalid gift link.");
+            console.error("Velora Error: Could not load bouquet.", e);
+            return;
         }
-    }
-
-    if (!data) {
+    } else {
+        // Creator's own view — load from localStorage
         const rawData = localStorage.getItem('velora_gift_data');
         if (!rawData) return;
         data = JSON.parse(rawData);
-        console.log("Velora: Loading your creation from local storage.");
+        console.log("Velora: Loaded from local storage.");
     }
 
-    // --- START RENDERING ---
-    
-    // 1. Rebuild Bouquet
+    renderBouquet(data);
+};
+
+// ==============================
+//  SHARE LOGIC
+// ==============================
+async function generateShareLink() {
+    const rawData = localStorage.getItem('velora_gift_data');
+    if (!rawData) return alert("No gift data found to share!");
+
+    const shareBtn = document.getElementById('share-btn');
+    shareBtn.innerText = "GENERATING...";
+
+    try {
+        // POST bouquet data to Supabase, get back the UUID
+        const res = await fetch(
+            `${SUPABASE_URL}/rest/v1/bouquets`,
+            {
+                method: "POST",
+                headers: { ...SUPABASE_HEADERS, "Prefer": "return=representation" },
+                body: JSON.stringify({ data: JSON.parse(rawData) })
+            }
+        );
+
+        if (!res.ok) throw new Error("Save failed");
+
+        const rows = await res.json();
+        const id = rows[0].id;
+
+        const shareUrl = `${window.location.origin}${window.location.pathname}?id=${id}`;
+        await navigator.clipboard.writeText(shareUrl);
+
+        shareBtn.innerText = "LINK COPIED!";
+        setTimeout(() => { shareBtn.innerText = "SHARE THIS GIFT"; }, 2000);
+        console.log("Velora: Share URL →", shareUrl);
+
+    } catch (err) {
+        console.error("Velora Error:", err);
+        shareBtn.innerText = "SHARE THIS GIFT";
+        alert("Couldn't generate link. Try again!");
+    }
+}
+
+// ==============================
+//  RENDER (unchanged from yours)
+// ==============================
+function renderBouquet(data) {
     const bouquetContainer = document.getElementById('final-bouquet-view');
     const baseImg = document.getElementById('final-base-img');
-    
-    // UPDATED: Use map for the bouquet base
+
     if (baseImg) baseImg.src = veloraMap[data.bouquetStyle] || data.bouquetStyle;
 
     data.placedFlowers.forEach(flower => {
         const img = document.createElement('img');
-        
-        // UPDATED: Use map for flowers
         img.src = veloraMap[flower.src] || flower.src;
-        
-        img.className = 'placed-item'; 
-        img.style.width = "100px"; 
+        img.className = 'placed-item';
+        img.style.width = "100px";
         img.style.position = "absolute";
-
-        img.style.left = String(flower.left).includes('%') || String(flower.left).includes('px') 
-                        ? flower.left : flower.left + "px";
-        img.style.top = String(flower.top).includes('%') || String(flower.top).includes('px') 
-                        ? flower.top : flower.top + "px";
-
+        img.style.left = String(flower.left).includes('%') || String(flower.left).includes('px')
+            ? flower.left : flower.left + "px";
+        img.style.top = String(flower.top).includes('%') || String(flower.top).includes('px')
+            ? flower.top : flower.top + "px";
         bouquetContainer.appendChild(img);
     });
 
-    // 2. Tag Logic (No changes needed here)
     if (data.tag && data.tag.show) {
         const finalTag = document.createElement('div');
         finalTag.className = 'final-tag';
@@ -84,16 +142,12 @@ window.onload = function() {
         bouquetContainer.appendChild(finalTag);
     }
 
-    // 3. Rebuild Gift Box
     const boxContainer = document.getElementById('final-box-view');
     if (data.placedGifts && data.placedGifts.length > 0) {
         boxContainer.style.display = 'block';
         data.placedGifts.forEach(gift => {
             const img = document.createElement('img');
-            
-            // UPDATED: Use map for gifts (handles 'g1' vs 'data:image')
             img.src = veloraMap[gift.src] || gift.src;
-            
             img.className = 'gift-item';
             if (gift.src.startsWith('data:image')) img.classList.add('custom-card');
             img.style.left = gift.left;
@@ -104,7 +158,6 @@ window.onload = function() {
         boxContainer.style.display = 'none';
     }
 
-    // 4. Letter (No changes needed here)
     if (data.letter) {
         document.getElementById('display-to').innerText = `Dear ${data.letter.to || 'You'},`;
         document.getElementById('display-message').innerText = data.letter.message || '';
@@ -116,26 +169,5 @@ window.onload = function() {
         spread: 70,
         origin: { y: 0.6 },
         colors: ['#ff69b4', '#ff85a2', '#ffb3c1', '#ffffff']
-    });
-};
-
-// --- SHARE LOGIC (The "Compressor") ---
-function generateShareLink() {
-    const rawData = localStorage.getItem('velora_gift_data');
-    if (!rawData) return alert("No gift data found to share!");
-
-    // This converts the already-shortened data into the URL string
-    const encodedData = btoa(unescape(encodeURIComponent(rawData)));
-    const shareUrl = `${window.location.origin}${window.location.pathname}?gift=${encodedData}`;
-
-    navigator.clipboard.writeText(shareUrl).then(() => {
-        const shareBtn = document.getElementById('share-btn');
-        if (shareBtn) {
-            shareBtn.innerText = "LINK COPIED!";
-            setTimeout(() => { shareBtn.innerText = "SHARE THIS GIFT"; }, 2000);
-        }
-    }).catch(err => {
-        console.error('Failed to copy: ', err);
-        alert("Couldn't copy automatically.");
     });
 }
