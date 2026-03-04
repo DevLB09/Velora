@@ -932,50 +932,45 @@ background: white;
     box-shadow: 0 4px 12px rgba(45, 90, 67, 0.2);
 }
 /* --- MOBILE LAYOUT: STACKED (Canvas Under Shelf) --- */
+/* --- FINAL MOBILE STACK FIX --- */
 @media (max-width: 768px) {
-    /* 1. Stack selection shelf on TOP, bouquet on BOTTOM */
-    .main-container { 
-        flex-direction: column !important; 
-        align-items: center !important;
-        gap: 20px;
+    /* 1. Break the side-by-side grid and stack them */
+    .build-grid {
+        display: flex !important;
+        flex-direction: column !important; /* Stack: Menu on top, Canvas below */
+        gap: 20px !important;
+        padding: 0 10px !important;
     }
 
-    /* 2. Selection Shelf: Make it take full width */
-    .selection-sidebar {
+    /* 2. Force the panels to take full width */
+    .selection-panel, .canvas-panel {
         width: 100% !important;
         max-width: 100% !important;
     }
 
-    /* 3. Items Grid: 3 columns so icons stay readable */
-    #items-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 10px;
-    }
-
-    /* 4. THE BOUQUET CANVAS: Full width and large */
-    #bouquet-view, #box-view {
-        width: 90vw !important;  /* 90% of screen width */
-        height: 90vw !important; /* Keep it a perfect square */
+    /* 3. The Canvas: Make it a large square below the flowers */
+    .drawing-board, #gift-canvas, #bouquet-view {
+        width: 92vw !important;  /* Use almost full screen width */
+        height: 92vw !important; /* Keep it square */
         margin: 0 auto !important;
-        position: relative;
-        border: 1px dashed #ccc; /* Subtle guide for building */
+        position: relative !important;
+        left: 0 !important;      /* Undo any desktop positioning */
     }
 
-    /* 5. Ensure the base wrapping fills the mobile canvas */
-    #base-img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: contain;
+    /* 4. The Sidebar/Shelf items: 3 columns for better fit */
+    .items-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
     }
 
-    /* 6. Adjust flower size for the mobile canvas */
+    /* 5. Fix Sticky: Stop the canvas from "following" on mobile */
+    .canvas-panel {
+        position: relative !important;
+        top: 0 !important;
+    }
+
+    /* 6. Scale the placed flowers for the mobile screen */
     .placed-item {
-        width: 80px !important; /* Slightly smaller for phone screens */
-    }
-
-    /* 7. Category buttons centering */
-    .category-toggle {
-        justify-content: center;
-        width: 100%;
+        width: 80px !important;
     }
 }
