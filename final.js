@@ -19,7 +19,7 @@ const veloraMap = {
     "t": "assets/tulip.png",
     "d": "assets/daisy.png",
     "l": "assets/lilac.png",
-    "g1": "assets/chocolate.png",
+    "g1": "assets/choco_bar.png",
     "g2": "assets/teddy.png",
     "g3": "assets/hello_kitty.png",
     "g4": "assets/ferrero.png",

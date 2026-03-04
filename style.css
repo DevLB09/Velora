@@ -931,3 +931,47 @@ background: white;
     color: white;
     box-shadow: 0 4px 12px rgba(45, 90, 67, 0.2);
 }
+/* --- MOBILE ONLY FIXES --- */
+@media (max-width: 768px) {
+    /* 1. Stack the layout vertically */
+    .main-container { 
+        flex-direction: column-reverse !important; 
+        align-items: center;
+        padding: 10px;
+    }
+
+    /* 2. Make the Canvas full width and responsive */
+    #bouquet-view, #box-view {
+        width: 95vw !important; /* Almost full width of screen */
+        height: 110vw !important; /* Keep it proportional */
+        margin: 0 auto 20px auto;
+        border: none !important; /* Clean up the dotted border for mobile if desired */
+    }
+
+    /* 3. Adjust the base image to fill the new canvas size */
+    #base-img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* 4. Fix the Items Grid so it doesn't squash */
+    .selection-sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #items-grid {
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 items per row on mobile */
+        gap: 8px;
+    }
+
+    .item-card {
+        padding: 5px;
+        font-size: 0.7rem;
+    }
+
+    /* 5. Adjust the placed flowers so they aren't massive on small screens */
+    .placed-item {
+        width: 70px !important; /* Smaller flowers for smaller screens */
+    }
+}
