@@ -898,3 +898,36 @@ background: white;
         max-width: 90%;
     }
 }
+.category-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cat-btn {
+    padding: 10px 24px;
+    border: 2px solid #2D5A43; /* Your Velora Green */
+    background-color: transparent;
+    color: #2D5A43;
+    border-radius: 25px; /* Pill shape */
+    font-family: 'Inter', sans-serif; /* Or your preferred font */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+}
+
+/* When the button is hovered */
+.cat-btn:hover {
+    background-color: #f8f4f0; /* Soft cream */
+    transform: translateY(-2px);
+}
+
+/* When the button is selected/active */
+.cat-btn.active {
+    background-color: #2D5A43;
+    color: white;
+    box-shadow: 0 4px 12px rgba(45, 90, 67, 0.2);
+}

@@ -52,6 +52,16 @@ function goToBuild() { window.location.href = "build.html"; }
 
 // 3. SELECTION MENU & VIEW TOGGLE
 function filterItems(category) {
+    // 1. Switch the "Active" button look
+    const buttons = document.querySelectorAll('.cat-btn');
+    buttons.forEach(btn => {
+        // If button text matches category, make it active
+        if(btn.innerText.toLowerCase() === category) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
     // Toggle Canvas Views
     const tagOpt = document.getElementById('tag-option-container');
     const drawOpt = document.getElementById('draw-option-container');
