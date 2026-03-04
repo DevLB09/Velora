@@ -932,44 +932,48 @@ background: white;
     box-shadow: 0 4px 12px rgba(45, 90, 67, 0.2);
 }
 /* --- MOBILE LAYOUT: STACKED (Canvas Under Shelf) --- */
-/* --- FINAL MOBILE STACK FIX --- */
 @media (max-width: 768px) {
-    /* 1. Break the side-by-side grid and stack them */
+    /* 1. Force vertical stack: Menu first, Canvas second */
     .build-grid {
         display: flex !important;
-        flex-direction: column !important; /* Stack: Menu on top, Canvas below */
-        gap: 20px !important;
-        padding: 0 10px !important;
+        flex-direction: column !important; 
+        grid-template-areas: none !important; /* Disables the desktop layout */
+        gap: 30px !important;
+        padding: 10px !important;
     }
 
-    /* 2. Force the panels to take full width */
+    /* 2. Ensure both sections take full width */
     .selection-panel, .canvas-panel {
         width: 100% !important;
         max-width: 100% !important;
-    }
-
-    /* 3. The Canvas: Make it a large square below the flowers */
-    .drawing-board, #gift-canvas, #bouquet-view {
-        width: 92vw !important;  /* Use almost full screen width */
-        height: 92vw !important; /* Keep it square */
-        margin: 0 auto !important;
         position: relative !important;
-        left: 0 !important;      /* Undo any desktop positioning */
+        top: 0 !important; /* Disables sticky for mobile */
     }
 
-    /* 4. The Sidebar/Shelf items: 3 columns for better fit */
+    /* 3. The Canvas: Full width square below the flowers */
+    .drawing-board, #gift-canvas, #bouquet-view {
+        width: 95vw !important;  
+        height: 95vw !important; 
+        margin: 0 auto !important;
+        border: 2px dashed #D1C9BC !important;
+    }
+
+    /* 4. STOP THE CROP: Ensure the bouquet art fits inside the square */
+    #base-img, .bouquet-base {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important; /* This prevents the cropping you saw */
+        bottom: 0 !important;
+        left: 0 !important;
+    }
+
+    /* 5. Item Grid: Keep 3 columns for easy tapping */
     .items-container {
         grid-template-columns: repeat(3, 1fr) !important;
-        gap: 10px !important;
+        gap: 12px !important;
     }
 
-    /* 5. Fix Sticky: Stop the canvas from "following" on mobile */
-    .canvas-panel {
-        position: relative !important;
-        top: 0 !important;
-    }
-
-    /* 6. Scale the placed flowers for the mobile screen */
+    /* 6. Flower sizing on mobile */
     .placed-item {
         width: 80px !important;
     }
