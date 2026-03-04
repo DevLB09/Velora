@@ -931,47 +931,51 @@ background: white;
     color: white;
     box-shadow: 0 4px 12px rgba(45, 90, 67, 0.2);
 }
-/* --- MOBILE ONLY FIXES --- */
+/* --- MOBILE LAYOUT: STACKED (Canvas Under Shelf) --- */
 @media (max-width: 768px) {
-    /* 1. Stack the layout vertically */
+    /* 1. Stack selection shelf on TOP, bouquet on BOTTOM */
     .main-container { 
-        flex-direction: column-reverse !important; 
-        align-items: center;
-        padding: 10px;
+        flex-direction: column !important; 
+        align-items: center !important;
+        gap: 20px;
     }
 
-    /* 2. Make the Canvas full width and responsive */
-    #bouquet-view, #box-view {
-        width: 95vw !important; /* Almost full width of screen */
-        height: 110vw !important; /* Keep it proportional */
-        margin: 0 auto 20px auto;
-        border: none !important; /* Clean up the dotted border for mobile if desired */
-    }
-
-    /* 3. Adjust the base image to fill the new canvas size */
-    #base-img {
-        width: 100% !important;
-        height: auto !important;
-    }
-
-    /* 4. Fix the Items Grid so it doesn't squash */
+    /* 2. Selection Shelf: Make it take full width */
     .selection-sidebar {
         width: 100% !important;
         max-width: 100% !important;
     }
 
+    /* 3. Items Grid: 3 columns so icons stay readable */
     #items-grid {
-        grid-template-columns: repeat(3, 1fr) !important; /* 3 items per row on mobile */
-        gap: 8px;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px;
     }
 
-    .item-card {
-        padding: 5px;
-        font-size: 0.7rem;
+    /* 4. THE BOUQUET CANVAS: Full width and large */
+    #bouquet-view, #box-view {
+        width: 90vw !important;  /* 90% of screen width */
+        height: 90vw !important; /* Keep it a perfect square */
+        margin: 0 auto !important;
+        position: relative;
+        border: 1px dashed #ccc; /* Subtle guide for building */
     }
 
-    /* 5. Adjust the placed flowers so they aren't massive on small screens */
+    /* 5. Ensure the base wrapping fills the mobile canvas */
+    #base-img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain;
+    }
+
+    /* 6. Adjust flower size for the mobile canvas */
     .placed-item {
-        width: 70px !important; /* Smaller flowers for smaller screens */
+        width: 80px !important; /* Slightly smaller for phone screens */
+    }
+
+    /* 7. Category buttons centering */
+    .category-toggle {
+        justify-content: center;
+        width: 100%;
     }
 }
