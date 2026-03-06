@@ -18,11 +18,10 @@ const veloraMap = {
     "s": "assets/sunflower.png",
     "t": "assets/tulip.png",
     "d": "assets/daisy.png",
-    "l": "assets/lilac.png",
     "c": "assets/clematis.png",
     "h": "assets/hellebore.png",
     "h2": "assets/hibiscus.png",
-    "l2": "assets/lily.png",
+    "l": "assets/lily.png",
     "p": "assets/plumeria.png",
     "pr": "assets/purple_rose.png",
     "wl": "assets/white_lily.png",
@@ -41,7 +40,8 @@ const veloraMap = {
     "b4": "assets/bouquet4.png",
     "b5": "assets/bouquet5.png",
     "b6": "assets/bouquet6.png",
-    "b7": "assets/bouquet7.png"
+    "b7": "assets/bouquet7.png",
+    "b8": "assets/bouquet8.png"
 };
 
 // ==============================

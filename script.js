@@ -4,11 +4,10 @@ const veloraMap = {
     "s": "assets/sunflower.png",
     "t": "assets/tulip.png",
     "d": "assets/daisy.png",
-    "l": "assets/lilac.png",
     "c": "assets/clematis.png",
     "h": "assets/hellebore.png",
     "h2": "assets/hibiscus.png",
-    "l2": "assets/lily.png",
+    "l": "assets/lily.png",
     "p": "assets/plumeria.png",
     "pr": "assets/purple_rose.png",
     "wl": "assets/white_lily.png",
@@ -29,7 +28,8 @@ const veloraMap = {
     "b4": "assets/bouquet4.png",
     "b5": "assets/bouquet5.png",
     "b6": "assets/bouquet6.png",
-    "b7": "assets/bouquet7.png"
+    "b7": "assets/bouquet7.png",
+    "b8": "assets/bouquet8.png"
 };
 // 1. NAVIGATION
 function goToBuild() {
@@ -42,7 +42,6 @@ const giftItems = [
     { name: 'Rose', category: 'flowers', image: 'rose.png', speciality: 'Classic Romance' },
     { name: 'Daisy', category: 'flowers', image: 'daisy.png', speciality: 'Innocence' },
     { name: 'Orchid', category: 'flowers', image: 'orchid.png', speciality: 'Exotic Beauty' },
-    { name: 'Lilac', category: 'flowers', image: 'lilac.png', speciality: 'Spring Scent' },
     { name: 'Sunflower', category: 'flowers', image: 'sunflower.png', speciality: 'Loyalty' },
     { name: 'Clematis', category: 'flowers', image: 'clematis.png',speciality: 'Magnificance' },
     { name: 'Hellebore', category: 'flowers', image: 'hellebore.png',speciality: 'Magnificance' },
@@ -64,7 +63,7 @@ const giftItems = [
 ];
 
 let flowerCount = 0;
-const MAX_FLOWERS = 10;
+const MAX_FLOWERS = 15;
 let selectionTally = {}; 
 
 // 2. NAVIGATION
@@ -532,7 +531,8 @@ const bouquetStyles = [
     { id: 'blush', name: 'Blush Romance', image: 'bouquet4.png' },
     { id: 'golden', name: 'Golden Hour', image: 'bouquet5.png' } ,
     { id: 'timeless', name: 'Timeless Black', image: 'bouquet6.png' },
-    { id: 'velvet',name: 'Red Velvet',image: 'bouquet7.png'} // Add more as you like
+    { id: 'velvet',name: 'Red Velvet',image: 'bouquet7.png'},
+    { id: 'old',name: 'Old World Charm',image: 'bouquet8.png'}// Add more as you like
 ];
 
 // 2. Open Modal and generate the grid
