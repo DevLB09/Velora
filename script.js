@@ -5,11 +5,23 @@ const veloraMap = {
     "t": "assets/tulip.png",
     "d": "assets/daisy.png",
     "l": "assets/lilac.png",
+    "c": "assets/clematis.png",
+    "h": "assets/hellebore.png",
+    "h2": "assets/hibiscus.png",
+    "l2": "assets/lily.png",
+    "p": "assets/plumeria.png",
+    "pr": "assets/purple_rose.png",
+    "wl": "assets/white_lily.png",
     // Gifts
     "g1": "assets/choco_bar.png",
     "g2": "assets/teddy.png",
     "g3": "assets/hello_kitty.png",
     "g4": "assets/ferrero.png",
+    "g5": "assets/kinder.png",
+    "g6": "assets/hot_wheels.png",
+    "g7": "assets/labubu.png",
+    "g8": "assets/necklace.png",
+    "g9": "assets/bracelet.png",
     // Bouquet Bases
     "b1": "assets/bouquet1.png",
     "b2": "assets/bouquet2.png",
@@ -32,6 +44,13 @@ const giftItems = [
     { name: 'Orchid', category: 'flowers', image: 'orchid.png', speciality: 'Exotic Beauty' },
     { name: 'Lilac', category: 'flowers', image: 'lilac.png', speciality: 'Spring Scent' },
     { name: 'Sunflower', category: 'flowers', image: 'sunflower.png', speciality: 'Loyalty' },
+    { name: 'Clematis', category: 'flowers', image: 'clematis.png',speciality: 'Magnificance' },
+    { name: 'Hellebore', category: 'flowers', image: 'hellebore.png',speciality: 'Magnificance' },
+    { name: 'Hibiscus', category: 'flowers', image: 'hibiscus.png',speciality: 'Magnificance' },
+    { name: 'Lily', category: 'flowers', image: 'lily.png',speciality: 'Magnificance' },
+    { name: 'Plumeria', category: 'flowers', image: 'plumeria.png',speciality: 'Magnificance' },
+    { name: 'Purple Rose', category: 'flowers', image: 'purple_rose.png',speciality: 'Magnificance' },
+    { name: 'White Lily', category: 'flowers', image: 'white_lily.png',speciality: 'Magnificance' },
     { name: 'Teddy', category: 'gifts', image: 'teddy.png', speciality: 'Cuddly Friend' },
     { name: 'Chocolate', category: 'gifts', image: 'choco_bar.png', speciality: 'Sweet Treat' },
     { name: 'Hello Kitty', category: 'gifts', image: 'hello_kitty.png',speciality: 'Cute Friend' },
@@ -40,7 +59,8 @@ const giftItems = [
     { name: 'Labubu', category: 'gifts', image: 'labubu.png',speciality: 'Sweet Friend' },
     { name: 'Hot Wheels', category: 'gifts', image: 'hot_wheels.png',speciality: 'For the boys' },
     { name: 'Necklace', category: 'gifts', image: 'necklace.png',speciality: 'Elegance' },
-    { name: 'Bracelet', category: 'gifts', image: 'bracelet.png',speciality: 'Magnificance' }
+    { name: 'Bracelet', category: 'gifts', image: 'bracelet.png',speciality: 'Magnificance' },
+    { name: 'Jellycats', category: 'gifts', image: 'doll.png',speciality: 'Adorable' },
 ];
 
 let flowerCount = 0;
