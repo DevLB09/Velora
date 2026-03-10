@@ -41,7 +41,9 @@ const veloraMap = {
     "b5": "assets/bouquet5.png",
     "b6": "assets/bouquet6.png",
     "b7": "assets/bouquet7.png",
-    "b8": "assets/bouquet8.png"
+    "b8": "assets/bouquet8.png",
+    "b9": "assets/bouquet9.png",
+    "b10": "assets/bouquet10.png"
 };
 
 // ==============================

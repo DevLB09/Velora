@@ -29,7 +29,9 @@ const veloraMap = {
     "b5": "assets/bouquet5.png",
     "b6": "assets/bouquet6.png",
     "b7": "assets/bouquet7.png",
-    "b8": "assets/bouquet8.png"
+    "b8": "assets/bouquet8.png",
+    "b9": "assets/bouquet9.png",
+    "b10": "assets/bouquet10.png"
 };
 // 1. NAVIGATION
 function goToBuild() {
@@ -532,7 +534,9 @@ const bouquetStyles = [
     { id: 'golden', name: 'Golden Hour', image: 'bouquet5.png' } ,
     { id: 'timeless', name: 'Timeless Black', image: 'bouquet6.png' },
     { id: 'velvet',name: 'Red Velvet',image: 'bouquet7.png'},
-    { id: 'old',name: 'Old World Charm',image: 'bouquet8.png'}// Add more as you like
+    { id: 'old',name: 'Old World Charm',image: 'bouquet8.png'},
+    { id: 'mist',name: 'Morning Mist',image: 'bouquet9.png',},
+    { id: 'sunday',name: 'The Sunday Special',image: 'bouquet10.png',}// Add more as you like
 ];
 
 // 2. Open Modal and generate the grid

@@ -978,3 +978,59 @@ background: white;
         width: 80px !important;
     }
 }
+/* ==================================
+   Breathing Flowers for Letter Page
+   ================================== */
+
+/* 1. Define the 'Breathing' keyframes (The movement) */
+@keyframes breathingFlower {
+    0% {
+        transform: translateY(0px) rotate(0deg); /* Starting position */
+    }
+    50% {
+        transform: translateY(-8px) rotate(1deg); /* Move up slightly and rotate 1 degree */
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg); /* Return to start */
+    }
+}
+
+/* 2. Common styles for all breathing flowers */
+.aesthetic-flower {
+    position: absolute; /* Allows precise placement */
+    width: 200px; /* An "aesthetic" size, not too big/small */
+    height: auto; /* Keeps aspect ratio perfect */
+    z-index: -1; /* Puts them behind the letter card */
+    opacity: 0.8; /* Makes them slightly transparent for a softer look */
+    
+    /* Apply the animation properties */
+    animation: breathingFlower 5s ease-in-out infinite; /* Slower 5s duration for a calmer effect than hero */
+}
+
+/* 3. Precise positioning for the 4 flowers */
+
+/* Top-left position */
+.flower-topLeft {
+    top: 15%;
+    left: 8%;
+}
+
+/* Middle-left position */
+.flower-middleLeft {
+    top: 45%;
+    left: 12%;
+}
+
+/* Bottom-left position */
+.flower-bottomLeft {
+    bottom: 15%;
+    left: 10%;
+    animation-delay: 1s; /* Adds an offset so they don't all breath in sync */
+}
+
+/* Bottom-right position */
+.flower-bottomRight {
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 2s; /* Adds an even bigger offset */
+}
