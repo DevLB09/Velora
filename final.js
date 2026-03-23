@@ -108,15 +108,6 @@ async function generateShareLink() {
 
         const shareUrl = `${window.location.origin}${window.location.pathname}?id=${id}`;
         await navigator.clipboard.writeText(shareUrl);
-
-        // --- ADDED: SHOW MODAL INSTEAD OF JUST CHANGING TEXT ---
-        showSupportModal();
-
-        // --- THE SOFT DELAY ---
-        console.log("Waiting 4 seconds to show support modal...");
-        setTimeout(() => {
-            showSupportModal();
-        }, 4000); // 4000ms = 4 seconds
         
         shareBtn.innerText = "LINK COPIED!";
         setTimeout(() => { shareBtn.innerText = "SHARE THIS GIFT"; }, 2000);
@@ -193,43 +184,4 @@ function renderBouquet(data) {
         origin: { y: 0.6 },
         colors: ['#ff69b4', '#ff85a2', '#ffb3c1', '#ffffff']
     });
-}
-// ==============================
-//  SUPPORT MODAL LOGIC
-// ==============================
-function showSupportModal() {
-    const modal = document.getElementById('support-modal');
-    if (modal) modal.style.display = 'flex';
-}
-
-function closeSupportModal() {
-    const modal = document.getElementById('support-modal');
-    if (modal) modal.style.display = 'none';
-}
-
-async function submitSupport() {
-    const trxInput = document.getElementById('trx-id');
-    const trxId = trxInput.value.trim();
-
-    if (trxId === "") {
-        closeSupportModal();
-        return;
-    }
-
-    // Optional: Send TrxID to a new Supabase table called 'donations'
-    try {
-        await fetch(`${SUPABASE_URL}/rest/v1/donations`, {
-            method: "POST",
-            headers: SUPABASE_HEADERS,
-            body: JSON.stringify({ 
-                trx_id: trxId, 
-                timestamp: new Date().toISOString() 
-            })
-        });
-        alert("Thank you! Your support helps keep Velora growing. ❤️");
-    } catch (e) {
-        console.error("Donation log failed", e);
-    }
-
-    closeSupportModal();
 }
