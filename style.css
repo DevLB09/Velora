@@ -1046,7 +1046,10 @@ background: white;
     justify-content: center;
     align-items: center;
 }
-
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 .support-card {
     background: #fdfaf5; /* Cream background */
     padding: 30px;

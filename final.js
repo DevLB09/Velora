@@ -112,6 +112,12 @@ async function generateShareLink() {
         // --- ADDED: SHOW MODAL INSTEAD OF JUST CHANGING TEXT ---
         showSupportModal();
 
+        // --- THE SOFT DELAY ---
+        console.log("Waiting 4 seconds to show support modal...");
+        setTimeout(() => {
+            showSupportModal();
+        }, 4000); // 4000ms = 4 seconds
+        
         shareBtn.innerText = "LINK COPIED!";
         setTimeout(() => { shareBtn.innerText = "SHARE THIS GIFT"; }, 2000);
         console.log("Velora: Share URL →", shareUrl);
