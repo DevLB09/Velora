@@ -97,7 +97,11 @@ async function generateShareLink() {
             {
                 method: "POST",
                 headers: { ...SUPABASE_HEADERS, "Prefer": "return=representation" },
-                body: JSON.stringify({ data: JSON.parse(rawData) })
+                body: JSON.stringify({ 
+                    data: JSON.parse(rawData), 
+                    created_at: new Date().toISOString()
+                })
+                
             }
         );
 
