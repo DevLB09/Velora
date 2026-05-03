@@ -111,9 +111,15 @@ async function generateShareLink() {
         const id = rows[0].id;
 
         const shareUrl = `${window.location.origin}${window.location.pathname}?id=${id}`;
-        await navigator.clipboard.writeText(shareUrl);
-        
-        shareBtn.innerText = "LINK COPIED!";
+        // This block handles the iPhone/Safari clipboard restriction
+        try {
+            await navigator.clipboard.writeText(shareUrl);
+            shareBtn.innerText = "LINK COPIED!";
+        } catch (err) {
+    // Fallback: If iPhone blocks the auto-copy, show a prompt they can manually copy from
+            window.prompt("Copy your bouquet link:", shareUrl);
+            shareBtn.innerText = "LINK READY!";
+        }
         setTimeout(() => { shareBtn.innerText = "SHARE THIS GIFT"; }, 2000);
         console.log("Velora: Share URL →", shareUrl);
 
