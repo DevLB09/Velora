@@ -312,15 +312,6 @@ body {
     pointer-events: none; /* Allows you to click 'through' them if needed */
     user-select: none;
 }
-/* Target Apple Devices (iOS and Safari) to fix the left-alignment shift */
-@media not all and (min-resolution:.001dpcm) { 
-    @supports (-webkit-appearance:none) {
-        .placed-item {
-            /* Force the flower anchor to the center of the coordinate */
-            transform: translate(-50%, -50%);
-        }
-    }
-}
 .drawing-board, #gift-canvas {
     aspect-ratio: 1 / 1;
     border: 2px dashed #D1C9BC;
