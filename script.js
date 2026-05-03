@@ -232,6 +232,7 @@ function addToCanvas(item) {
 
                 if (newX >= minX && newX <= maxX) img.style.left = newX + 'px';
                 if (newY >= minY && newY <= maxY) img.style.top = newY + 'px';
+                img.style.transform = 'translate(-50%, -50%)';
             }
         };
 

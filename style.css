@@ -317,7 +317,7 @@ body {
     @supports (-webkit-appearance:none) {
         .placed-item {
             /* Force the flower anchor to the center of the coordinate */
-            transform: translate(-50%, -50%) !important;
+            transform: translate(-50%, -50%);
         }
     }
 }
