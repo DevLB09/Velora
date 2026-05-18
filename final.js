@@ -117,7 +117,7 @@ async function generateShareLink() {
             shareBtn.innerText = "LINK COPIED!";
         } catch (err) {
     // Fallback: If iPhone blocks the auto-copy, show a prompt they can manually copy from
-            window.prompt("Copy your bouquet link:", shareUrl);
+            window.prompt("Copy your bouquet link by holding it:", shareUrl);
             shareBtn.innerText = "LINK READY!";
         }
         setTimeout(() => { shareBtn.innerText = "SHARE THIS GIFT"; }, 2000);
