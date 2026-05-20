@@ -1,0 +1,26 @@
+{
+  "name": "velora",
+  "version": "1.0.0",
+  "description": "Velora - Send treats, digitally. Build a personalized digital bouquet and share it with someone special.",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevLB09/Velora.git"
+  },
+  "keywords": [
+    "velora",
+    "digital-bouquet",
+    "gifts"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevLB09/Velora/issues"
+  },
+  "homepage": "https://github.com/DevLB09/Velora#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
